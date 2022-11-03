@@ -6,7 +6,10 @@ dotenv.config();
 let files = null
 
 executeFilesCrudOperations().then(
-    fileCollection => files = fileCollection
+    fileCollection => {
+        files = fileCollection
+        console.log(files)
+    }
 )
 
 const express = require('express')
@@ -27,3 +30,7 @@ app.get('/files/', async (req, res) =>  {
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 })
+
+module.exports = {
+    app
+}
