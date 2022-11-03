@@ -14,6 +14,7 @@ const console = require("console");
 const app = express();
 const port = 3000;
 app.use(cors());
+app.use(express.json());
 app.get("/", (req, res) => {
   res.send("Bienvenue sur le back !");
 });
@@ -39,8 +40,9 @@ app.get("/ContentOf/", async (req, res) => {
   );
 });
 
-app.get("/Add/", async (req, res) => {
-  await files.insertOne(req.body.path, req.body.description);
+app.post("/Add/", async (req, res) => {
+    console.log(req.body["path"])
+  await files.insertOne(req.body["path"], req.body["description"]);
   var file = files.findOne({ path: req.body.path });
   fs.appendFile(
     "./" + process.env.DATA + "/" + file._id,
