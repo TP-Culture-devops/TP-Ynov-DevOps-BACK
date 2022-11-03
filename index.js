@@ -42,10 +42,14 @@ app.get("/ContentOf/", async (req, res) => {
 app.get("/Add/", async (req, res) => {
   await files.insertOne(req.body.path, req.body.description);
   var file = files.findOne({ path: req.body.path });
-  fs.appendFile(file._id, req.body.content, function (err) {
-    if (err) throw err;
-    res.send("Ajout reussi !");
-  });
+  fs.appendFile(
+    "./" + process.env.DATA + "/" + file._id,
+    req.body.content,
+    function (err) {
+      if (err) throw err;
+      res.send("Ajout reussi !");
+    }
+  );
 });
 
 app.get("/download/", async (req, res) => {
