@@ -41,8 +41,11 @@ app.get("/ContentOf/", async (req, res) => {
 });
 
 app.post("/Add/", async (req, res) => {
-    console.log(req.body["path"])
-  await files.insertOne(req.body["path"], req.body["description"]);
+  console.log(req.body["path"]);
+  await files.insertOne({
+    path: req.body["path"],
+    description: req.body["description"],
+  });
   var file = files.findOne({ path: req.body.path });
   fs.appendFile(
     "./" + process.env.DATA + "/" + file._id,
