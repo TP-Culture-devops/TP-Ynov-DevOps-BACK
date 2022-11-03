@@ -22,13 +22,16 @@ jobs:
           registry: ghcr.io
           username: SVPackage
           password: ${{ secrets.GH_TOKEN }}
+          
+      - name: Add SHORT_SHA env property with commit short sha
+        run: echo "SHORT_SHA=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
       
       - name: Build image and push to GitHub Container Registry
         uses: docker/build-push-action@v2
         with:
           context: ./
           tags: |
-            ghcr.io/tp-culture-devops/devops-back:'${{ github.sha }}'
+            ghcr.io/tp-culture-devops/devops-back:'${{ SHORT_SHA }}'
           push: ${{ github.ref == 'refs/heads/main' }}
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
