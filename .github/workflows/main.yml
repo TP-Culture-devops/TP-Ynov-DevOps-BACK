@@ -28,7 +28,7 @@ jobs:
         with:
           context: ./
           tags: |
-            ghcr.io/tp-culture-devops/devops-back:'${{ github.sha::7 }}'
+            ghcr.io/tp-culture-devops/devops-back:'${{ github.sha }}::7'
           push: ${{ github.ref == 'refs/heads/main' }}
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
