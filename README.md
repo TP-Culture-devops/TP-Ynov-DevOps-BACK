@@ -1,7 +1,10 @@
 # TP-Ynov-DevOps-BACK
 
 # Deployment
-Copier le .env.example et le coller dans un .env en modifiant la valeur de la variable db_URI
+Copier le .env.example et le coller dans un .env en modifiant la valeur de la variable DB_URI avec l'url de la base mongoDB :
+```markdown
+DB_URI=mongodb+srv://{user}:{password}@{cluster}.mongodb.net/?
+```
 
 # links
 https://discord.gg/JUGdYthN <br>
