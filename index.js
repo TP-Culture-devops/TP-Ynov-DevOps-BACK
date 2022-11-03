@@ -1,9 +1,24 @@
+const dotenv = require('dotenv');
+const {executeFilesCrudOperations} = require('./services/mongoService');
+
+dotenv.config();
+
+let files = null
+
+executeFilesCrudOperations().then(
+    fileCollection => files = fileCollection
+);
+
 const express = require('express')
 const app = express()
 const port = 3000
 
 app.get('/', (req, res) => {
     res.send('Bienvenue sur le back !')
+})
+
+app.get('/files/', (req, res) => {
+    console.log(files.find())
 })
 
 /*
