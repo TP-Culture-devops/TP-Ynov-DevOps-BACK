@@ -2,7 +2,7 @@ name: Build and Publish
 
 on:
   push:
-    branches: [master]
+    branches: [dev-ci-cd]
   pull_request:
 jobs:
   build-and-push-docker-image:
@@ -28,7 +28,7 @@ jobs:
         with:
           context: ./
           tags: |
-            ghcr.io/tp-culture-devops/devops-back:${{env:GITHUB_SHA}}
+            ghcr.io/tp-culture-devops/devops-back:$GITHUB_SHA
           push: ${{ github.ref == 'refs/heads/main' }}
 
       - name: Image digest
