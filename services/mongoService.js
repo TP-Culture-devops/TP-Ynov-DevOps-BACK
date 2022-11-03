@@ -16,18 +16,21 @@ const connectToCluster = async (uri) => {
     }
 }
 
-const executeStudentCrudOperations = async () => {
+const executeFilesCrudOperations = async () => {
     const uri = process.env.DB_URI;
     let mongoClient;
 
     try {
         mongoClient = await connectToCluster(uri);
+        const db = mongoClient.db('devops_db');
+        const files = db.collection('files');
+        return files
     } finally {
         await mongoClient.close();
     }
 }
 
 module.exports = {
-    executeStudentCrudOperations,
+    executeFilesCrudOperations,
     connectToCluster
 }
