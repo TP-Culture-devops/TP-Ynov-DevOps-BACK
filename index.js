@@ -17,8 +17,9 @@ app.get('/', (req, res) => {
     res.send('Bienvenue sur le back !')
 })
 
-app.get('/files/', (req, res) => {
-    console.log(files.find())
+
+app.get('/files/', (req, res) =>  {
+    res.send(files.find())
 })
 
 /*
