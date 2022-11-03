@@ -33,3 +33,12 @@ jobs:
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
+
+  deploy:
+    name: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: launch sh script
+        run: sh ./deploy.sh
+
+     
