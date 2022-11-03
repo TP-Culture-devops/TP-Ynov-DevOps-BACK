@@ -28,7 +28,7 @@ jobs:
         with:
           context: ./
           tags: |
-            ghcr.io/tp-culture-devops/nginx-test:latest
+            ghcr.io/tp-culture-devops/devops-back:${{env:GITHUB_SHA}}
           push: ${{ github.ref == 'refs/heads/main' }}
 
       - name: Image digest
