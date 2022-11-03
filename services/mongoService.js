@@ -1,5 +1,7 @@
 const {MongoClient} = require("mongodb")
 
+let files,db;
+
 const connectToCluster = async (uri) => {
     let mongoClient;
 
@@ -16,18 +18,17 @@ const connectToCluster = async (uri) => {
     }
 }
 
-const executeFilesCrudOperations = async () => {
+async function executeFilesCrudOperations() {
     const uri = process.env.DB_URI;
     let mongoClient;
 
-    try {
+    
         mongoClient = await connectToCluster(uri);
-        const db = mongoClient.db('devops_db');
-        const files = db.collection('files');
+        db = mongoClient.db('devops_db');
+        files = db.collection('files');
+
         return files
-    } finally {
-        await mongoClient.close();
-    }
+    
 }
 
 module.exports = {

@@ -7,7 +7,7 @@ let files = null
 
 executeFilesCrudOperations().then(
     fileCollection => files = fileCollection
-);
+)
 
 const express = require('express')
 const app = express()
@@ -17,9 +17,11 @@ app.get('/', (req, res) => {
     res.send('Bienvenue sur le back !')
 })
 
-
-app.get('/files/', (req, res) =>  {
-    res.send(files.find())
+/*
+Renvoie tous les fichiers en base
+*/
+app.get('/files/', async (req, res) =>  {
+    res.send(await files.find().toArray())
 })
 
 /*
