@@ -30,7 +30,7 @@ jobs:
         with:
           context: ./
           tags: |
-            ghcr.io/tp-culture-devops/devops-back:$IMAGE_TAG
+            ghcr.io/tp-culture-devops/devops-back:latest
           push: ${{ github.ref == 'refs/heads/main' }}
       - name: Print VAr
         run: echo $IMAGE_TAG && echo ${{ github.sha }}
