@@ -1,7 +1,8 @@
 const dotenv = require('dotenv');
 const {executeFilesCrudOperations} = require('./services/mongoService');
-
+const {ObjectId} = require("mongodb");
 dotenv.config();
+const fs = require('fs')
 
 let files = null
 
@@ -9,7 +10,8 @@ executeFilesCrudOperations().then(
     fileCollection => files = fileCollection
 )
 
-const express = require('express')
+const express = require('express');
+const console = require('console');
 const app = express()
 const port = 3000
 
@@ -25,7 +27,18 @@ app.get('/files/', async (req, res) =>  {
 })
 
 app.get('/ContentOf/', async (req, res) =>  {
-    res.download("./files/"+req.query.id)
+    let fileContent;
+    fs.readFile("./files/"+req.query.id, 'utf8', function (err,data) {
+    if (err) {
+        return console.log(err);
+    }
+    res.send(data )
+    });
+    
+})
+
+app.get('/download/', async (req, res) =>  {
+    res.download("./files/"+req.query.id )
 })
 
 app.listen(port, () => {
