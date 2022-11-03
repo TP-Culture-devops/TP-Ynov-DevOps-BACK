@@ -24,11 +24,13 @@ jobs:
           password: ${{ secrets.GH_TOKEN }}
       
       - name: Build image and push to GitHub Container Registry
+        env:
+          IMAGE_TAG: ${{ github.sha }}
         uses: docker/build-push-action@v2
         with:
           context: ./
           tags: |
-            ghcr.io/tp-culture-devops/devops-back:$GITHUB_SHA
+            ghcr.io/tp-culture-devops/devops-back:$IMAGE_TAG
           push: ${{ github.ref == 'refs/heads/main' }}
 
       - name: Image digest
