@@ -2,6 +2,7 @@ const dotenv = require('dotenv');
 const {executeFilesCrudOperations} = require('./services/mongoService');
 const {ObjectId} = require("mongodb");
 dotenv.config();
+const cors = require('cors')
 const fs = require('fs')
 
 let files = null
@@ -14,7 +15,7 @@ const express = require('express');
 const console = require('console');
 const app = express()
 const port = 3000
-
+app.use(cors())
 app.get('/', (req, res) => {
     res.send('Bienvenue sur le back !')
 })
@@ -23,7 +24,7 @@ app.get('/', (req, res) => {
 Renvoie tous les fichiers en base
 */
 app.get('/files/', async (req, res) =>  {
-    res.send(await files.find().toArray())
+    res.send(await files.find().toArray()) req.body
 })
 
 app.get('/ContentOf/', async (req, res) =>  {
