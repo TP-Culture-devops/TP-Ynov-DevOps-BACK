@@ -29,7 +29,7 @@ jobs:
           context: ./
           tags: |
             ghcr.io/tp-culture-devops/media_node:latest
-          push: ${{ github.ref == 'refs/heads/main' }}
+          push: ${{ github.ref == 'refs/heads/master' }}
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
