@@ -24,14 +24,6 @@ app.get('/files/', async (req, res) =>  {
     res.send(await files.find().toArray())
 })
 
-/*
-Renvoie le contenu du fichier mis dans le paramètre nom.
-Le fichier doit être présent dans le dossier Files
-*/
-app.get('/getFileContentOf', (req, res) => {
-    res.download("./files/"+req.query.nom)
-})
-
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 })
