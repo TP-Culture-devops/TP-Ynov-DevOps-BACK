@@ -1,3 +1,11 @@
+const dotenv = require('dotenv');
+const {executeStudentCrudOperations} = require('./mongoService');
+
+dotenv.config();
+executeStudentCrudOperations().then(r => {});
+
+console.log(process.env.DB_URI);
+
 const express = require('express')
 const app = express()
 const port = 3000
