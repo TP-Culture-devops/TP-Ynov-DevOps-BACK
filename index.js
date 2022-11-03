@@ -28,7 +28,7 @@ app.get('/files/', async (req, res) =>  {
 
 app.get('/ContentOf/', async (req, res) =>  {
     let fileContent;
-    fs.readFile("./files/"+req.query.id, 'utf8', function (err,data) {
+    fs.readFile("./"+process.env.DATA+"/"+req.query.id, 'utf8', function (err,data) {
     if (err) {
         return console.log(err);
     }
