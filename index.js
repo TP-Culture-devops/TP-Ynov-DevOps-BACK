@@ -24,6 +24,10 @@ app.get('/files/', async (req, res) =>  {
     res.send(await files.find().toArray())
 })
 
+app.get('/ContentOf/', async (req, res) =>  {
+    res.download("./files/"+req.query.id)
+})
+
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 })
