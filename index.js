@@ -7,7 +7,7 @@ let files = null
 
 executeFilesCrudOperations().then(
     fileCollection => files = fileCollection
-);
+)
 
 const express = require('express')
 const app = express()
@@ -17,16 +17,11 @@ app.get('/', (req, res) => {
     res.send('Bienvenue sur le back !')
 })
 
-app.get('/files/', (req, res) => {
-    console.log(files.find())
-})
-
 /*
-Renvoie le contenu du fichier mis dans le paramètre nom.
-Le fichier doit être présent dans le dossier Files
+Renvoie tous les fichiers en base
 */
-app.get('/getFileContentOf', (req, res) => {
-    res.download("./files/"+req.query.nom)
+app.get('/files/', async (req, res) =>  {
+    res.send(await files.find().toArray())
 })
 
 app.listen(port, () => {
