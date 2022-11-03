@@ -1,5 +1,8 @@
 # TP-Ynov-DevOps-BACK
 
+# Deployment
+Copier le .env.example et le coller dans un .env en modifiant la valeur de la variable db_URI
+
 # links
 https://discord.gg/JUGdYthN <br>
 https://trello.com/invite/b/aFaYGRqD/ATTIa66b401ab79eafd45738ae14d0cf7a36ABBEAE62/mediatheque
